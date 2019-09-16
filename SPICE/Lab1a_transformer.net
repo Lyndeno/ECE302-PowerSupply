@@ -1,0 +1,41 @@
+* C:\users\david\My Documents\homework\ECE_302\lab\SPICE\Lab1a_transformer.asc
+V1 N003 0 SINE(0 170 60)
+L1 N004 0 2.5
+R1 N004 N003 0.1
+R2 N006 N005 0.1
+R3 N007 N010 0.1
+L3 N010 0 43.8m
+D1 RECT_- N006 D
+D2 N006 RECT_+ D
+D3 RECT_- N007 D
+D4 N007 RECT_+ D
+C1 RECT_+ 0 100µ
+C2 0 RECT_- 100µ
+XD5 N002 N001 1N4740A
+R4 N001 RECT_+ 400
+R5 N009 RECT_- 400
+XD6 N009 N008 1N4740A
+L2 0 N005 43.8m
+R6 0 N002 50µ
+R7 0 N008 50µ
+R8 N001 0 400
+R9 0 N009 400
+.model D D
+.lib C:\users\david\My Documents\LTspiceXVII\lib\cmp\standard.dio
+Ktran L1 L2 L3 0.999
+.tran 100m
+* Rectifier Stage
+* Transformer
+* Filter
+* V(regulated) = I(peak_ballast) / (freq * C
+.SUBCKT 1N4740A 1 2
+* Terminals A K
+D1 1 2 DF
+DZ 3 1 DR
+VZ 2 3 9.02
+.MODEL DF D ( IS=41.2p RS=0.620 N=1.10
++ CJO=68.9p VJ=0.750 M=0.330 TT=50.1n )
+.MODEL DR D ( IS=8.24f RS=0.403 N=1.30 )
+.ENDS
+.backanno
+.end
