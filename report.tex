@@ -1,6 +1,9 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 
-\title{Dual Rail Power Supply}
+\usepackage[margin=0.75in]{geometry}
+
+\title{ {\Huge Dual Rail Power Supply } \\
+    ECE 302 Lab \#1 \\ LAD D11 / Bench \#9}
 \author{
     Lyndon Sanche\\
     \texttt{lsanche@ualberta.ca}
@@ -10,17 +13,37 @@
 }
 
 \begin{document}
+\pagenumbering{roman}
+
 \maketitle
 \newpage
 \tableofcontents
 
-\section{Introduction}
+\newpage
+\pagenumbering{arabic}
+
+\section{Introduction / Abstract}
+
+Low-noise, low power split rail power supplies are a staple of the audio industry.
+In order to generate the required audio waveforms for applications such as headphone or
+low-power amplifiers, a negative and a positive voltage rail is necessary.
+
+In this lab, a $\pm 10 V$ split rail power supply was implemented,
+where the output ripple was designed to be less than $ 0.5 \% $ of the
+regulated voltage. This supply operated using mains $115 V_RMS, 60Hz $ power, with
+a step down transformer leading to a diode rectifier. This rectifier supplied DC power to
+positive and negative rails, each using a capacitor as a low-pass filter and implementing
+a regulator output. The positive rail used an off the shelf 78L10AC linear regulator,
+while the negative rail used a Zener diode-based regulator circuit.
 
 \section{Design}
 
 \section{Simulation}
 
 \section{Implementation}
+
+Implementation was straightforward, where the theoretical, simulated circuit was simply
+copied onto a solderless breadboard. 
 
 \section{Testing}
 
