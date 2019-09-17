@@ -11,15 +11,16 @@ D3 RECT_- N007 D
 D4 N007 RECT_+ D
 C1 RECT_+ 0 100µ
 C2 0 RECT_- 100µ
-XD5 N002 N001 1N4740A
+D5 N002 N001 D1N4740
 R4 N001 RECT_+ 400
-R5 N009 RECT_- 400
-XD6 N009 N008 1N4740A
+R5 N009 RECT_- 350
+D6 N009 N008 D1N4740
 L2 0 N005 43.8m
 R6 0 N002 50µ
 R7 0 N008 50µ
 R8 N001 0 400
 R9 0 N009 400
+C3 N009 0 10µ
 .model D D
 .lib C:\users\david\My Documents\LTspiceXVII\lib\cmp\standard.dio
 Ktran L1 L2 L3 0.999
@@ -28,14 +29,9 @@ Ktran L1 L2 L3 0.999
 * Transformer
 * Filter
 * V(regulated) = I(peak_ballast) / (freq * C
-.SUBCKT 1N4740A 1 2
-* Terminals A K
-D1 1 2 DF
-DZ 3 1 DR
-VZ 2 3 9.02
-.MODEL DF D ( IS=41.2p RS=0.620 N=1.10
-+ CJO=68.9p VJ=0.750 M=0.330 TT=50.1n )
-.MODEL DR D ( IS=8.24f RS=0.403 N=1.30 )
-.ENDS
+*1N4740
+*Motorola 10V 1W Si Zener pkg:DO-41 1,2
+.MODEL D1N4740 D(IS=2.91E-15 RS=2.71 TT=5.01E-8 CJO=6.89E-11 VJ=0.75
++ M=0.33 BV=9.937 IBV=0.025 )
 .backanno
 .end
