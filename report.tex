@@ -8,7 +8,7 @@
     Lyndon Sanche\\
     \texttt{lsanche@ualberta.ca}
     \and
-    David Lenfesty\\\
+    David Lenfesty\\
     \texttt{lenfesty@ualberta.ca}
 }
 
@@ -37,6 +37,11 @@ a regulator output. The positive rail used an off the shelf 78L10AC linear regul
 while the negative rail used a Zener diode-based regulator circuit.
 
 \section{Design}
+The purpose of this power supply is to take a 60Hz, 120Vrms signal, and convert it to a +-10V DC signal. The circuit is divided into
+several stages for easier understanding. These stages include a transformer stage, rectifier stage, filter stage, and regulator stage. The combination 
+of these stages allow us to convert a 120Vrms signal from a standard wall outlet, and convert it into two rails, one supplying roughly 10V and one supplying -10V. 
+The supply is designed to have a minimal amount of ripple so the current going into the load does not flucuate.
+
 
 \section{Simulation}
 
