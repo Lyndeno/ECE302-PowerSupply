@@ -16,11 +16,7 @@
 \pagenumbering{roman}
 
 \maketitle
-\newpage
-\tableofcontents
 
-\newpage
-\pagenumbering{arabic}
 
 \section{Abstract}
 
@@ -36,12 +32,35 @@ positive and negative rails, each using a capacitor as a low-pass filter and imp
 a regulator output. The positive rail used an off the shelf 78L10AC linear regulator,
 while the negative rail used a Zener diode-based regulator circuit.
 
-\section{Design}
-The purpose of this power supply is to take a 60Hz, 120Vrms signal, and convert it to a +-10V DC signal. The circuit is divided into
-several stages for easier understanding. These stages include a transformer stage, rectifier stage, filter stage, and regulator stage. The combination 
-of these stages allow us to convert a 120Vrms signal from a standard wall outlet, and convert it into two rails, one supplying roughly 10V and one supplying -10V. 
-The supply is designed to have a minimal amount of ripple so the current going into the load does not flucuate.
+\newpage
+\pagenumbering{arabic}
 
+\section{Objectives}
+
+The objective of this lab is to design a split-rail power supply capable of supplying
+$\pm 10V$ at 25mA, with a voltage error of less than 5\% and less than 0.5\% ripple.
+
+This power supply will be used later in this lab to provide power for the audio amplifier
+we will design.
+
+\section{Design}
+
+In order to simplify the design process, the power supply design was split into three
+stages, rectification, filtering, and regulation. By splitting up the design into these
+parts, it was simpler to test and easier to diagnose issues.
+
+By simulating the circuit prior to building it, we were able to experiment wth different
+component values and the effects of removing certain key components, which gave a better
+understanding of how the circuit worked.
+
+For the rectifier stage, a full-bridge rectifier was chosen as the design, as it provided
+the most efficient and uniform output, compared to the half- or full-wave rectifier designs.
+
+The largest size capacitor available in the lab kit was the one that was eventually chosen,
+at $100 \mu F$, it provided plenty of filtering and smoothed out the rectifier waveform
+well enough to limit ripple significantly.
+
+The final circuit schematic can be found in appendix oiawdwiadnawodn
 
 \section{Simulation}
 
@@ -50,7 +69,12 @@ The supply is designed to have a minimal amount of ripple so the current going i
 Implementation was straightforward, where the theoretical, simulated circuit was simply
 copied onto a solderless breadboard. 
 
+\section{Discussion}
+
+The zener diode typically performs
+
 \section{Conclusion}
+
 
 
 \end{document}

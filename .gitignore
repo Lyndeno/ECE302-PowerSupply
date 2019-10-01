@@ -9,3 +9,5 @@ report.toc
 *.raw
 *.log
 SPICE/Lab1a_transformer.net
+
+*.swp
