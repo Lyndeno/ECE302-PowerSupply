@@ -71,16 +71,16 @@ The rectiifer stage is the first part of converting our signal to positive and n
 to be positive or negative, depending on the rail. We have chosen the bridge rectifier instead of a rectifier design such as a half wave recitifer, as it doesn't cut out the negative parts of our wave, flipping them instead 
 so we have more consistent voltage in our supply. We hook up the positive and negative rails to the same recitifer to produce a positive and negative recitified signal.
 
-For the filter stage, we chose to use a shunt capacitor filter. The recitified AC signal that comes from the bridge rectifier is not appropriate to power electronic devices, so we use the capacitor filter to smooth out the output. We have chosen 
+For the filter stage, we chose to use a shunt capacitor filter. The rectified AC signal that comes from the bridge rectifier is not appropriate to power electronic devices, so we use the capacitor filter to smooth out the output. We have chosen 
 an appropriate size of capacitor to filter out a large amount of the AC components of our signal, leaving us a signal that stays around 10V with a manageable mount of ripple.
 
-The regulator stage is different on the postive and negative rail. For the positive rail, we use a voltage regulator to remove the ripple on the signal, making it a near constant 10V dc signal. We find that the voltage regulator is very effective at removing 
+The regulator stage is different on the positive and negative rail. For the positive rail, we use a voltage regulator to remove the ripple on the signal, making it a near constant 10V dc signal. We find that the voltage regulator is very effective at removing 
 ripple from our signal.
 
 For the negative rail, we make use of a zener diode to regulate our voltage. Zener diodes are effective at regulating voltage when paired with the right ballast resistor. Even with the right ballast resistance, we were having some trouble removing the ripple from our signal, 
 we put a capacitor in parallel with our load to regulate the voltage further. The result of this design is an effective voltage regulator, however, it is not as effective as a stand-alone voltage regulator.
 
-After all these stages the power supply will output 10 volts on a postive and negative rail. These two rails will be useful when designing an audio amplifier, as audio needs both.
+After all these stages the power supply will output 10 volts on a positive and negative rail. These two rails will be useful when designing an audio amplifier, as audio needs both.
 
 \section{Simulation}
 
@@ -94,7 +94,27 @@ The zener diode performs worse than the IC-based linear regulator. The linear re
 and also has better ripple-rejection than the zener regulator.
 
 While the zener diode required a small-sized ballast resistor and an extra capacitor on the output to reduce ripple,
-the IC regulator did this without any extra compon
+the IC regulator did this without any extra components, and was simpler to design around, requiring less calculations
+and tweaking.
+
+This design used a low-pass filter (LPF) because a purely DC signal was wanted, with no
+AC components, as those would manifest as noise on the final output of the amplifier.
+
+Additional filtering was needed for the zener regulator to keep the ripple down. This was adjusted
+simply by testing different capacitances.
+
+This power supply design was quite inefficient, having to drop around $10V$ to provide the correct
+output. This could easily be improved by changing the transformer to one with twice the windings on
+one side to drop the voltage even more before regulation and filtering.
+
+There is a difference between the calculations, the simulations, and the measurements, because the
+calculations were simplified formulas, the simulations assumed perfect components, and the
+measurements used components that had parasitics and uncertainties.
+
+The major difficulty we faced was with the ripple on the zener output. We did a 
+calculation over again in the lab and didn't reference our notes, so we got stuck
+on a higher value ballast resistor than necessary. This could simply have been fixed by referencing
+our notes properly.
 
 \section{Conclusion}
 
