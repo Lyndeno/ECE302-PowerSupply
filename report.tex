@@ -1,6 +1,13 @@
 \documentclass[12pt]{article}
 
 \usepackage[margin=0.75in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+
+\newcommand{\graphwidth}{0.5\linewidth}
+
+%\graphicspath{ {./res/image/}}
+
 
 \title{ {\Huge Dual Rail Power Supply } \\
     ECE 302 Lab \#1 \\ LAD D11 / Bench \#9}
@@ -26,7 +33,7 @@ low-power amplifiers, a negative and a positive voltage rail is necessary.
 
 In this lab, a $\pm 10 V$ split rail power supply was implemented,
 where the output ripple was designed to be less than $ 0.5 \% $ of the
-regulated voltage. This supply operated using mains $115 V_RMS, 60Hz $ power, with
+regulated voltage. This supply operated using mains $115 V_RMS$, $60Hz $ power, with
 a step down transformer leading to a diode rectifier. This rectifier supplied DC power to
 positive and negative rails, each using a capacitor as a low-pass filter and implementing
 a regulator output. The positive rail used an off the shelf 78L10AC linear regulator,
@@ -97,6 +104,85 @@ all of the requirements. In this lab, we were able to effectively use diodes to 
 a functioning full-bridge rectifier, turning AC current into DC current, and then filter
 and regulate this signal using a capacitors, an off-the-shelf voltage regulator IC, and
 a zener diode.
+
+\newpage
+
+\begin{appendix}
+
+\section{Rectifier Waveforms}
+
+\subsection{Simulated}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\graphwidth]{./res/image/sim-rectifier-unfiltered.png}
+    \caption{wbaiudbwiuabd}
+    \label{sim:rectifier_unfiltered}
+\end{figure}
+
+\subsection{Measured}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\graphwidth]{./res/image/rectifier-output.png}
+    \caption{wbaiudbwiuabd}
+    \label{fig:rectifier_unfiltered}
+\end{figure}
+
+\section{Filter Waveforms}
+
+\subsection{Simulated}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\graphwidth]{./res/image/sim-filtered.png}
+    \caption{abdiuwabdiu}
+    \label{sim:filtered}
+\end{figure}
+
+\subsection{Measured}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\graphwidth]{./res/image/rectifier-withload.png}
+    \caption{abdiuwabdiu}
+    \label{fig:filtered}
+\end{figure}
+
+\section{Regulator Waveforms}
+
+\subsection{Positive Regulator}
+
+\subsubsection{Measured}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\graphwidth]{./res/image/pos-fullload.png}
+    \caption{abdiuwabdiu}
+    \label{fig:pos_fullload}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\graphwidth]{./res/image/pos-fullload-ripple.png}
+    \caption{abdiuwabdiu}
+    \label{fig:pos_fullload_ripple}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\graphwidth]{./res/image/pos-noload-ripple.png}
+    \caption{abdiuwabdiu}
+    \label{fig:pos_noload_ripple}
+\end{figure}
+
+\subsection{Negative Regulator}
+
+\subsubsection{Simulated}
+
+\subsubsection{Measured}
+
+\end{appendix}
 
 
 \end{document}

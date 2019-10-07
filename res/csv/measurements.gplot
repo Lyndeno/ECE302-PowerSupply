@@ -1,4 +1,4 @@
-set term png
+set term pngcairo
 
 set key off
 
@@ -11,38 +11,38 @@ set ylabel "Voltage (V)"
 
 set yrange [ -0.02: 0.02]
 
-set output "neg_full_load_ripple.png"
+set output "../image/neg-full-load-ripple.png"
 plot "negative_full_load_ripple.csv"  with lines lc rgb 'blue'
 
-set output "pos_fullload_ripple.png"
+set output "../image/pos-fullload-ripple.png"
 plot "pos_fulload_ripple.csv" with lines lc rgb 'red'
 
-set output "pos_noload_ripple.png"
+set output "../image/pos-noload-ripple.png"
 plot "pos_noload_ripple.csv" with lines lc rgb 'red'
 
-set output "neg_full_load.png"
+set output "../image/neg-full-load.png"
 set yrange [-10.1:0]
 plot "negative_full_load.csv" with lines lc rgb 'blue'
 
 set yrange [0:10.1]
-set output "pos_fullload.png"
+set output "../image/pos-fullload.png"
 plot "pos_fullload.csv" with lines lc rgb 'red'
 
-set output "pos_noload.png"
+set output "../image/pos-noload.png"
 plot "pos_noload.csv" with lines lc rgb 'red'
 
 set autoscale xy
 
-set output "rectifier_output.png"
+set output "../image/rectifier-output.png"
 plot "rectifier-output.csv" using 1:2  with lines lc rgb 'red', "" using 1:3 with lines lc rgb 'blue'
 
-set output "rectifier_withload.png"
+set output "../image/rectifier-withload.png"
 plot "rectifier-withload.csv" using 1:2 with lines lc rgb 'red'
 
 set xrange [0: 0.08]
 
-set output "pos_filter.png"
+set output "../image/pos-filter.png"
 plot "pos_filter.csv" using 1:2 with lines lc rgb 'red'
 
-set output "neg_filter.png"
+set output "../image/neg-filter.png"
 plot "neg_filter.csv" using 1:2 with lines lc rgb 'blue'
