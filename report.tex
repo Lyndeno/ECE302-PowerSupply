@@ -31,7 +31,7 @@ Low-noise, low power split rail power supplies are a staple of the audio industr
 In order to generate the required audio waveforms for applications such as headphone or
 low-power amplifiers, a negative and a positive voltage rail is necessary.
 
-In this lab, a $\pm 10 V$ split rail power supply was implemented,
+In this lab, a $\pm10 V$ split rail power supply was implemented, 
 where the output ripple was designed to be less than $ 0.5 \% $ of the
 regulated voltage. This supply operated using mains $115 V_RMS$, $60Hz $ power, with
 a step down transformer leading to a diode rectifier. This rectifier supplied DC power to
@@ -39,7 +39,6 @@ positive and negative rails, each using a capacitor as a low-pass filter and imp
 a regulator output. The positive rail used an off the shelf 78L10AC linear regulator,
 while the negative rail used a Zener diode-based regulator circuit.
 
-\newpage
 \pagenumbering{arabic}
 
 \section{Objectives}
@@ -55,21 +54,41 @@ we will design.
 In order to simplify the design process, the power supply design was split into three
 stages, rectification, filtering, and regulation. By splitting up the design into these
 parts, it was simpler to test and easier to diagnose issues.
+The purpose of this power supply is to take a $60\,Hz$, $120 V_{RMS}$ signal, and convert it to a $\pm10 V$ DC signal. The circuit is divided into
+several stages for easier understanding, design, and testing. These stages include a transformer stage, rectifier stage, filter stage, and regulator stage. The combination 
+of these stages allow us to convert a $120 V_{RMS}$ signal from a standard wall outlet, and convert it into two rails, one supplying roughly $10 V$ and one supplying $-10 V$. 
+The supply is designed to have a minimal amount of ripple so the current going into the load does not fluctuate.
 
 By simulating the circuit prior to building it, we were able to experiment wth different
 component values and the effects of removing certain key components, which gave a better
 understanding of how the circuit worked.
 
-The purpose of this power supply is to take a 60Hz, 120Vrms signal, and convert it to a +-10V DC sige thagnal. The circuit is divided into
-several stages for easier understanding. These stages include a transformer stage, rectifier stage, filter stage, and regulator stage. The combination 
-of these stages allow us to convert a 120Vrms signal from a standard wall outlet, and convert it into two rails, one supplying roughly 10V and one supplying -10V. 
-The supply is designed to have a minimal amount of ripple so the current going into the load does not flucuate.
+\subsection{Transformer}
+The transformer stage is used to step down the $120 V_{RMS}$ voltage down to a voltage that will be manageable by the rectifier, filter, and regulator stages.
 
-The transformer stage is used to step down the 120Vrms voltage down to a voltage that will be manageable by the rectifier, filter, and regulator stages.
+\subsection{Rectifier}
+The rectifier stage is the first part of converting our signal to positive and negative rails. We have chosen to use a full-bridge rectifier design as it converts all parts of the voltage signal 
+to be positive or negative, depending on the rail, and produces a more uniform and efficient output compared to half-wave or full-wave rectifiers. We have chosen the bridge rectifier instead of a rectifier design such as a half wave rectifier, as it doesn't cut out 
+the negative parts of our wave, flipping them instead so we have more consistent voltage in our supply. We hook up the positive and negative rails to the same rectifier to produce a 
+positive and negative rectified signal.
 
-The rectiifer stage is the first part of converting our signal to positive and negative rails. We have chosen to use a bridge recitifier design as it converts all parts of the voltage signal 
-to be positive or negative, depending on the rail. We have chosen the bridge rectifier instead of a rectifier design such as a half wave recitifer, as it doesn't cut out the negative parts of our wave, flipping them instead 
-so we have more consistent voltage in our supply. We hook up the positive and negative rails to the same recitifer to produce a positive and negative recitified signal.
+\subsection{Filter}
+For the filter stage, we chose to use a shunt capacitor filter. The rectified AC signal that comes from the bridge rectifier is not appropriate to power electronic devices, so 
+we use the capacitor filter to smooth out the output. We have chosen an appropriate capacitance to filter out a large amount of the AC components of our signal, leaving us a 
+signal that stays around 10V with a manageable mount of ripple.
+
+The largest size capacitor available in the lab kit was the one that was eventually chosen,
+at $100 \mu F$, it provided plenty of filtering and smoothed out the rectifier waveform
+well enough to limit ripple significantly.
+
+\subsection{Regulator}
+The regulator stage is different on the positive and negative rail. For the positive rail, we use a voltage regulator to remove the ripple on the signal, making it a 
+near constant $\pm10 V$ DC signal. We find that the voltage regulator is very effective at removing ripple from our signal.
+
+\subsection{Zener Regulator}
+For the negative rail, we make use of a zener diode to regulate our voltage. Zener diodes are effective at regulating voltage when paired with the right ballast resistor. Even 
+with the right ballast resistance, we were having some trouble removing the ripple from our signal, we put a capacitor in parallel with our load to regulate the voltage further. 
+The result of this design is an effective voltage regulator, however, it is not as effective as a stand-alone voltage regulator.
 
 For the filter stage, we chose to use a shunt capacitor filter. The rectified AC signal that comes from the bridge rectifier is not appropriate to power electronic devices, so we use the capacitor filter to smooth out the output. We have chosen 
 an appropriate size of capacitor to filter out a large amount of the AC components of our signal, leaving us a signal that stays around 10V with a manageable mount of ripple.
@@ -80,7 +99,12 @@ ripple from our signal.
 For the negative rail, we make use of a zener diode to regulate our voltage. Zener diodes are effective at regulating voltage when paired with the right ballast resistor. Even with the right ballast resistance, we were having some trouble removing the ripple from our signal, 
 we put a capacitor in parallel with our load to regulate the voltage further. The result of this design is an effective voltage regulator, however, it is not as effective as a stand-alone voltage regulator.
 
-After all these stages the power supply will output 10 volts on a positive and negative rail. These two rails will be useful when designing an audio amplifier, as audio needs both.
+\subsection{Future Use}
+After all these stages the power supply will output 10 volts on a positive and negative rail. These two rails will be useful when designing an audio amplifier, as we'll need control over the 
+positive and negative voltages of audio signals.
+
+
+The final circuit schematic can be found in appendix oiawdwiadnawodn
 
 \section{Simulation}
 
@@ -117,6 +141,12 @@ on a higher value ballast resistor than necessary. This could simply have been f
 our notes properly.
 
 \section{Conclusion}
+Designing a power supply in lab allowed us to test different configurations to create a functional source of power for future projects. 
+Using different regulators for the two rails allows us to test and compare the two designs side by side. We can see in our testing that a voltage regulator IC is much more effective 
+in voltage regulation than a zener diode.
+
+The power supply designed has shown to be effective at providing a reliable DC signal with minimal ripple, showing that the combination of rectifier, filter, and regulator is effective 
+at converting an AC signal to a DC signal. Slight changes to certain parts of the design could easily make the power supply work for different use cases, such as changing the rail voltages.
 
 For this lab, a series of requirements was laid out for designing a power supply for an audio
 amplifier. These requirements were taken and turned into a functional circuit that met
