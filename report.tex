@@ -22,25 +22,32 @@ several stages for easier understanding. These stages include a transformer stag
 of these stages allow us to convert a $120\,V_{RMS}$ signal from a standard wall outlet, and convert it into two rails, one supplying roughly 10V and one supplying $-10\,V$. 
 The supply is designed to have a minimal amount of ripple so the current going into the load does not fluctuate.
 
+\subsection{Transformer}
 The transformer stage is used to step down the $120\,V_{RMS}$ voltage down to a voltage that will be manageable by the rectifier, filter, and regulator stages.
 
+\subsection{Rectifier}
 The rectifier stage is the first part of converting our signal to positive and negative rails. We have chosen to use a bridge rectifier design as it converts all parts of the voltage signal 
 to be positive or negative, depending on the rail. We have chosen the bridge rectifier instead of a rectifier design such as a half wave rectifier, as it doesn't cut out 
 the negative parts of our wave, flipping them instead so we have more consistent voltage in our supply. We hook up the positive and negative rails to the same rectifier to produce a 
 positive and negative rectified signal.
 
+\subsection{Filter}
 For the filter stage, we chose to use a shunt capacitor filter. The rectified AC signal that comes from the bridge rectifier is not appropriate to power electronic devices, so 
 we use the capacitor filter to smooth out the output. We have chosen an appropriate size of capacitor to filter out a large amount of the AC components of our signal, leaving us a 
 signal that stays around 10V with a manageable mount of ripple.
 
+\subsection{Regulator}
 The regulator stage is different on the positive and negative rail. For the positive rail, we use a voltage regulator to remove the ripple on the signal, making it a 
 near constant $\pm10\,V$ DC signal. We find that the voltage regulator is very effective at removing ripple from our signal.
 
+\subsection{Zener Regulator}
 For the negative rail, we make use of a zener diode to regulate our voltage. Zener diodes are effective at regulating voltage when paired with the right ballast resistor. Even 
 with the right ballast resistance, we were having some trouble removing the ripple from our signal, we put a capacitor in parallel with our load to regulate the voltage further. 
 The result of this design is an effective voltage regulator, however, it is not as effective as a stand-alone voltage regulator.
 
-After all these stages the power supply will output 10 volts on a positive and negative rail. These two rails will be useful when designing an audio amplifier, as audio needs both.
+\subsection{Future Use}
+After all these stages the power supply will output 10 volts on a positive and negative rail. These two rails will be useful when designing an audio amplifier, as we'll need control over the 
+positive and negative voltages of audio signals.
 
 
 \section{Simulation}
