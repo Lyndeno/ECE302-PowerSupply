@@ -53,14 +53,27 @@ By simulating the circuit prior to building it, we were able to experiment wth d
 component values and the effects of removing certain key components, which gave a better
 understanding of how the circuit worked.
 
-For the rectifier stage, a full-bridge rectifier was chosen as the design, as it provided
-the most efficient and uniform output, compared to the half- or full-wave rectifier designs.
+The purpose of this power supply is to take a 60Hz, 120Vrms signal, and convert it to a +-10V DC sige thagnal. The circuit is divided into
+several stages for easier understanding. These stages include a transformer stage, rectifier stage, filter stage, and regulator stage. The combination 
+of these stages allow us to convert a 120Vrms signal from a standard wall outlet, and convert it into two rails, one supplying roughly 10V and one supplying -10V. 
+The supply is designed to have a minimal amount of ripple so the current going into the load does not flucuate.
 
-The largest size capacitor available in the lab kit was the one that was eventually chosen,
-at $100 \mu F$, it provided plenty of filtering and smoothed out the rectifier waveform
-well enough to limit ripple significantly.
+The transformer stage is used to step down the 120Vrms voltage down to a voltage that will be manageable by the rectifier, filter, and regulator stages.
 
-The final circuit schematic can be found in appendix oiawdwiadnawodn
+The rectiifer stage is the first part of converting our signal to positive and negative rails. We have chosen to use a bridge recitifier design as it converts all parts of the voltage signal 
+to be positive or negative, depending on the rail. We have chosen the bridge rectifier instead of a rectifier design such as a half wave recitifer, as it doesn't cut out the negative parts of our wave, flipping them instead 
+so we have more consistent voltage in our supply. We hook up the positive and negative rails to the same recitifer to produce a positive and negative recitified signal.
+
+For the filter stage, we chose to use a shunt capacitor filter. The recitified AC signal that comes from the bridge rectifier is not appropriate to power electronic devices, so we use the capacitor filter to smooth out the output. We have chosen 
+an appropriate size of capacitor to filter out a large amount of the AC components of our signal, leaving us a signal that stays around 10V with a manageable mount of ripple.
+
+The regulator stage is different on the postive and negative rail. For the positive rail, we use a voltage regulator to remove the ripple on the signal, making it a near constant 10V dc signal. We find that the voltage regulator is very effective at removing 
+ripple from our signal.
+
+For the negative rail, we make use of a zener diode to regulate our voltage. Zener diodes are effective at regulating voltage when paired with the right ballast resistor. Even with the right ballast resistance, we were having some trouble removing the ripple from our signal, 
+we put a capacitor in parallel with our load to regulate the voltage further. The result of this design is an effective voltage regulator, however, it is not as effective as a stand-alone voltage regulator.
+
+After all these stages the power supply will output 10 volts on a postive and negative rail. These two rails will be useful when designing an audio amplifier, as audio needs both.
 
 \section{Simulation}
 
